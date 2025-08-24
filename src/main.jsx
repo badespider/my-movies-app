@@ -13,19 +13,28 @@ const options = {
   api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST || import.meta.env.VITE_POSTHOG_HOST || 'https://us.i.posthog.com',
   defaults: '2025-05-24',
 }
+const posthogEnabled = Boolean(apiKey)
+
+const AppRoutes = (
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <Suspense fallback={<div />}> 
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/watchlist" element={<Watchlist />} />
+      </Routes>
+    </Suspense>
+  </BrowserRouter>
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <PostHogProvider apiKey={apiKey} options={options}>
-      <BrowserRouter>
-        <Suspense fallback={<div />}> 
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/movie/:id" element={<MovieDetails />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </PostHogProvider>
+    {posthogEnabled ? (
+      <PostHogProvider apiKey={apiKey} options={options}>
+        {AppRoutes}
+      </PostHogProvider>
+    ) : (
+      AppRoutes
+    )}
   </StrictMode>,
 )

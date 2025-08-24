@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import Search from './components/Search.jsx'
 import MovieCard from './components/MovieCard.jsx'
 import TrendingList from './components/TrendingList.jsx'
@@ -207,7 +207,7 @@ function App() {
             <a className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded" href="#discover">Discover</a>
             <a className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded" href="#trending">Trending</a>
             <a className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded" href="#about">About</a>
-            <a className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded" href="/watchlist">Watchlist</a>
+            <Link className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded" to="/watchlist">Watchlist</Link>
           </nav>
         </div>
       </header>
@@ -363,12 +363,12 @@ function App() {
                         className="size-10 shrink-0 rounded object-cover"
                         loading="lazy"
                       />
-                      <a
-                        href={`/movie/${it.movie_id}`}
+                      <Link
+                        to={`/movie/${it.movie_id}`}
                         className="truncate text-sm text-neutral-200 hover:underline"
                       >
                         {it.title}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ol>
