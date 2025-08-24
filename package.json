@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:pages": "echo 'Use GitHub Actions workflow .github/workflows/deploy.yml'"
   },
   "dependencies": {
     "appwrite": "^18.2.0",
